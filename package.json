@@ -1,0 +1,18 @@
+{
+  "name": "event",
+  "version": "1.0.0",
+  "description": "需要 Node.js 24 或更新版本，无须安装第三方依赖。",
+  "main": "auth.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sqlite3": "^6.0.1"
+  }
+}

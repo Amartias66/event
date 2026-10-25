@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>登录与注册 · 微光</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="auth.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <section class="auth-card" aria-labelledby="page-title">
+      <header class="card-header">
+        <a class="brand" href="./index.html" aria-label="微光首页">
+          <span class="brand-icon" aria-hidden="true">✦</span>
+          <span>微光</span>
+        </a>
+        <p class="eyebrow">YOUR NEXT CHAPTER</p>
+        <h1 id="page-title">美好，从这里开始</h1>
+        <p class="subtitle">登录或创建账号，开启属于你的空间。</p>
+      </header>
+
+      <div class="auth-switch">
+        <!-- 同名单选框控制显示状态，支持键盘方向键切换 -->
+        <input
+          class="switch-input"
+          type="radio"
+          name="auth-mode"
+          id="mode-login"
+          autocomplete="off"
+          aria-controls="login-panel"
+          checked
+        >
+        <input
+          class="switch-input"
+          type="radio"
+          name="auth-mode"
+          id="mode-register"
+          autocomplete="off"
+          aria-controls="register-panel"
+        >
+
+        <div class="switch-tabs">
+          <label for="mode-login" id="login-label">登录</label>
+          <label for="mode-register" id="register-label">注册</label>
+          <span class="tab-indicator" aria-hidden="true"></span>
+        </div>
+
+        <section
+          class="form-panel login-panel"
+          id="login-panel"
+          aria-labelledby="login-label"
+        >
+          <div class="panel-heading">
+            <h2>欢迎回来</h2>
+            <p>输入账号信息，继续你的旅程。</p>
+          </div>
+
+          <!-- 请将 action 替换为实际的后端登录接口 -->
+          <form action="/api/login" method="post">
+            <div class="field">
+              <label for="login-account">账号</label>
+              <input
+                id="login-account"
+                name="account"
+                type="text"
+                placeholder="请输入用户名或邮箱"
+                autocomplete="username"
+                autocapitalize="none"
+                spellcheck="false"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="login-password">密码</label>
+              <input
+                id="login-password"
+                name="password"
+                type="password"
+                placeholder="请输入密码"
+                autocomplete="current-password"
+                required
+              >
+            </div>
+
+            <button class="submit-button" type="submit">
+              <span>登录账号</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </form>
+
+          <p class="panel-note">每一次出发，都值得期待。</p>
+        </section>
+
+        <section
+          class="form-panel register-panel"
+          id="register-panel"
+          aria-labelledby="register-label"
+        >
+          <div class="panel-heading">
+            <h2>认识新的你</h2>
+            <p>只需几步，即可拥有专属账号。</p>
+          </div>
+
+          <!-- 注册成功后返回登录选项卡，账号保存到 SQLite。 -->
+          <form action="/api/register" method="post">
+            <div class="field">
+              <label for="register-username">用户名</label>
+              <input
+                id="register-username" name="username"
+                type="text"
+                placeholder="给自己起个名字"
+                autocomplete="username"
+                autocapitalize="none"
+                spellcheck="false"
+                minlength="2"
+                maxlength="30"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="register-email">邮箱</label>
+              <input
+                id="register-email" name="email"
+                type="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                autocapitalize="none"
+                spellcheck="false"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="register-password">密码</label>
+              <input
+                id="register-password" name="password"
+                type="password"
+                placeholder="请设置至少 8 位密码"
+                autocomplete="new-password"
+                aria-describedby="password-hint"
+                minlength="8"
+                required
+              >
+              <small class="field-hint" id="password-hint">
+                至少 8 位，建议组合使用字母、数字和符号。
+              </small>
+            </div>
+
+            <div class="field">
+              <label for="register-confirm">确认密码</label>
+              <input
+                id="register-confirm" name="confirm_password"
+                type="password"
+                placeholder="请再次输入密码"
+                autocomplete="new-password"
+                minlength="8"
+                required
+              >
+            </div>
+
+            <button class="submit-button" type="submit">
+              <span>创建账号</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </form>
+
+          <p class="panel-note">新的故事，正等你书写。</p>
+        </section>
+      </div>
+
+      <footer class="card-footer">
+        <span class="footer-dot" aria-hidden="true"></span>
+        一点微光，无限可能
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

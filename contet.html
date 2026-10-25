@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的待办 · 微光</title>
+  <link rel="stylesheet" href="contet.css">
+  <script src="contet.js" defer></script>
+  <link rel="stylesheet" href="speech.css">
+  <script src="speech.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="contet.html"><span class="logo">✦</span> 微光 <span class="brand-caption">日常，有序发生</span></a>
+    <div class="nav-actions">
+<div id="speech-controls" class="speech-controls" hidden>
+<button id="speech-toggle" class="quiet-button" type="button" aria-pressed="false">播报：关闭</button>
+<select id="speech-voice" aria-label="中文播报音色" disabled><option value="">正在加载中文音色…</option></select>
+<details class="speech-settings"><summary>语音设置</summary><div class="speech-settings-panel">
+<label for="speech-rate">语速 <output id="speech-rate-value" for="speech-rate">1.0</output></label>
+<input id="speech-rate" type="range" min="0.5" max="2" step="0.1" value="1">
+<label for="speech-pitch">音调 <output id="speech-pitch-value" for="speech-pitch">1.0</output></label>
+<input id="speech-pitch" type="range" min="0" max="2" step="0.1" value="1">
+<button id="speech-preview" class="quiet-button" type="button">试听当前音色</button>
+<p id="speech-status" role="status" aria-live="polite"></p></div></details></div><button id="theme-toggle" class="quiet-button" aria-pressed="false">☾ 暗黑模式</button><button id="logout" class="quiet-button">退出登录 ↗</button></div>
+  </header>
+  <main class="workspace">
+    <section class="intro">
+      <div><p class="eyebrow">A LITTLE PROGRESS, EVERY DAY</p><h1>欢迎，<span id="username">朋友</span>！</h1><p class="muted">把想做的事记下来，让每一步都算数。</p></div>
+      <div class="date-block"><span class="live-dot"></span> 此刻 <time id="clock"></time></div>
+    </section>
+    <p id="feedback" role="status" aria-live="polite"></p>
+    <div id="reminder" class="reminder" role="status" hidden></div>
+    <section class="stats" aria-label="任务统计">
+      <article class="stat"><span>全部任务</span><strong id="total">0</strong><small>记录每一个小目标</small></article>
+      <article class="stat"><span>已完成 <b class="stat-symbol">✓</b></span><strong id="done">0</strong><small>每一步，都是积累</small></article>
+      <article class="stat"><span>待完成 <b class="stat-symbol">◷</b></span><strong id="pending">0</strong><small>按自己的节奏前进</small></article>
+      <article class="stat progress-card"><span>完成进度</span><strong id="percent">0<em>%</em></strong><progress id="progress" max="100" value="0" aria-label="任务完成率"></progress></article>
+    </section>
+    <section class="panel composer" aria-labelledby="new-title">
+      <div class="section-heading"><h2 id="new-title">新增待办</h2><span class="muted">给计划一个开始</span></div>
+      <form id="task-form">
+        <label class="title-field">任务内容<input name="title" placeholder="接下来，想完成什么？" maxlength="200" required></label>
+        <label>截止日期<input type="date" name="due" required></label>
+        <label>优先级<select name="priority"><option>高</option><option selected>中</option><option>低</option></select></label>
+        <label>分类<select name="category"><option>学习</option><option>项目</option><option>生活</option><option>大创</option></select></label>
+        <button class="primary-button" type="submit">＋ 添加任务</button>
+      </form>
+    </section>
+    <section class="panel list-panel" aria-labelledby="list-title">
+      <div class="section-heading"><div class="list-heading"><h2 id="list-title">我的任务</h2><span id="list-count" class="count">0 项</span></div><label class="category-filter">分类<select id="category-filter"><option value="all">全部分类</option><option>学习</option><option>项目</option><option>生活</option><option>大创</option></select></label></div>
+      <div class="filters" role="group" aria-label="任务状态筛选"><button data-filter="all" aria-pressed="true">全部</button><button data-filter="pending" aria-pressed="false">未完成</button><button data-filter="done" aria-pressed="false">已完成</button><button data-filter="trash" aria-pressed="false">回收站</button></div>
+      <ul id="task-list" aria-label="待办任务"></ul>
+      <div id="empty" class="empty" hidden><span>✧</span><h3>留一点空间，给新的计划</h3><p>这里还没有任务，添加一件想完成的小事吧。</p></div>
+    </section>
+    <footer>✦ 一点微光，无限可能 <span>专注当下 · 慢慢向前</span></footer>
+  </main>
+<dialog id="notes-dialog" aria-labelledby="notes-title">
+<form id="notes-form">
+<div class="section-heading"><h2 id="notes-title">任务备注</h2><button type="button" id="close-notes" class="quiet-button" aria-label="关闭备注">✕</button></div>
+<p id="notes-task-title"></p><label for="notes-input">记录细节，让下一步更清晰</label>
+<textarea id="notes-input" maxlength="3000" rows="7" placeholder="添加任务说明、想法或需要留意的事…"></textarea>
+<p id="notes-status" role="status"></p><div class="dialog-actions"><span class="muted">最多 3000 字</span><button id="save-notes" class="primary-button" type="submit">保存备注</button></div>
+</form></dialog></body>
+</html>
