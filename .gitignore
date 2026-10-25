@@ -1,0 +1,6 @@
+weiguang.sqlite*
+
+node_modules/
+.env
+.env.*
+*.log
